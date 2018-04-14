@@ -51,5 +51,5 @@ resource "aws_route53_record" "staging-app" {
   ttl     = "300"
   records = ["${aws_eip.staging.public_ip}"]
 
-  depends_on = [ "aws_instance.staging" ]
+  depends_on = [ "aws_eip.staging" ]
 }
