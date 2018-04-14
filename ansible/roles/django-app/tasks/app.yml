@@ -20,7 +20,7 @@
     - name: Create python virtualenv
       command: python3.6 -m venv {{ venv_dir }}
 
-#    - name: pip install requirements.txt
-#      command: "{{ staging_venv_dir }}/bin/pip install -r {{ staging_dir }}/requirements.txt"
+    - name: pip install requirements.txt
+      command: "{{ venv_dir }}/bin/pip install -r {{ app_dir }}/requirements.txt"
 
   become_user: "{{ sites_owner }}"
