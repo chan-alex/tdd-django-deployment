@@ -1,7 +1,7 @@
 
 - block:
 
-    - name: Delete existing app director - {{ app_dir }}
+    - name: Delete existing app directory - {{ app_dir }}
       file:
         name: "{{ app_dir }}"
         state: absent
@@ -24,3 +24,14 @@
       command: "{{ venv_dir }}/bin/pip install -r {{ app_dir }}/requirements.txt"
 
   become_user: "{{ sites_owner }}"
+
+- name: Install nginx configuration file
+  template: 
+    src:  files/nginx/tdd_django_template
+    dest: "/etc/nginx/sites-available/{{ env_vars[env].nginx_file }}"
+
+- name: Make nginx symlink
+  file:
+    src:   "/etc/nginx/sites-available/{{ env_vars[env].nginx_file }}"
+    dest:  "/etc/nginx/sites-enabled/{{ env_vars[env].nginx_file }}"
+    state: link

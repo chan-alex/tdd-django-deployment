@@ -1,0 +1,8 @@
+server {
+    listen 80;
+    server_name {{ env_vars[env].domain }};
+
+    location / {
+        proxy_pass http://localhost:{{ app_port }};
+    }
+}

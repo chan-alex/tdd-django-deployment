@@ -24,3 +24,9 @@
         state: directory
 
   become_user: "{{ sites_owner }}"
+
+
+- name: Remove nginx default site symlink
+  file:
+    path: /etc/nginx/sites-enabled/default
+    state: absent

@@ -3,15 +3,14 @@
 
 sites_owner: ubuntu
 sites_dir: /home/{{ sites_owner }}/sites
-
 git_repo: https://github.com/chan-alex/tdd-django
 
-staging_domain: tdd-python-staging.chanalex.com
-
+app_port: 8000
 
 env_vars:
     staging:
         domain: tdd-python-staging.chanalex.com
+        nginx_file: tdd_django_staging 
 
 
 app_dir: "{{ sites_dir }}/{{ env_vars[env].domain }}"
