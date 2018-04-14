@@ -4,9 +4,15 @@
 sites_owner: ubuntu
 sites_dir: /home/{{ sites_owner }}/sites
 
-
 git_repo: https://github.com/chan-alex/tdd-django
 
 staging_domain: tdd-python-staging.chanalex.com
-staging_dir: "{{ sites_dir }}/{{ staging_domain }}"
-staging_venv_dir: "{{ staging_dir }}/virtualenv"
+
+
+env_vars:
+    staging:
+        domain: tdd-python-staging.chanalex.com
+
+
+app_dir: "{{ sites_dir }}/{{ env_vars[env].domain }}"
+venv_dir: "{{ app_dir }}/virtualenv"

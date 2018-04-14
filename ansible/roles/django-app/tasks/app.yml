@@ -1,0 +1,26 @@
+
+- block:
+
+    - name: Delete existing app director - {{ app_dir }}
+      file:
+        name: "{{ app_dir }}"
+        state: absent
+
+    - name: Create app directory - {{ app_dir }}
+      file:
+        name: "{{ app_dir }}"
+        state: directory
+
+    - name: git clone app code
+      git:
+        repo: "{{ git_repo }}"
+        dest: "{{ app_dir }}"
+        #version: master
+
+    - name: Create python virtualenv
+      command: python3.6 -m venv {{ venv_dir }}
+
+#    - name: pip install requirements.txt
+#      command: "{{ staging_venv_dir }}/bin/pip install -r {{ staging_dir }}/requirements.txt"
+
+  become_user: "{{ sites_owner }}"
