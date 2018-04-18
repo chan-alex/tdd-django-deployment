@@ -2,6 +2,10 @@ server {
     listen 80;
     server_name {{ env_vars[env].domain }};
 
+    location /static {
+        alias {{ app_dir }}/static;
+    }
+
     location / {
         proxy_pass http://localhost:{{ app_port }};
     }

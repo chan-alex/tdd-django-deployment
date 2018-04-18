@@ -1,2 +1,4 @@
 ---
 # defaults file for django-app
+
+migrate_db: "no"
