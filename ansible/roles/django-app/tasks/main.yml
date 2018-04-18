@@ -2,4 +2,6 @@
 # tasks file for django-app
 
 - include: app_prerequisites.yml 
-- include: app.yml 
+- include: pre_deploy.yml 
+- include: deploy_app.yml 
+- include: post_deploy.yml 
